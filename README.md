@@ -12,23 +12,25 @@ lenita-tattoo/
 └── assets/         → SVGs usados como imagens (troque pelas fotos reais)
 ```
 
-## Como trocar as imagens de exemplo pelas fotos reais
+## Fotos
 
-As imagens em `assets/flash-*.svg` são só placeholders (desenhos de linha, no
-mesmo estilo do site) pra você ver o layout funcionando. Pra usar fotos de
-verdade:
+As fotos reais já estão em `assets/photos/` (trabalhos + foto da Lenita
+tatuando). A seção **disponíveis** ainda usa ícones de exemplo (SVG) porque
+ainda não temos fotos de flash disponível — troque assim que tiver:
 
-1. Coloque as fotos dentro da pasta `assets/` (ex: `assets/rosa-1.jpg`).
-2. No `index.html`, troque o `src` da tag `<img>` correspondente, ex:
+1. Coloque a foto nova dentro de `assets/photos/` (ex: `assets/photos/flash-1.jpg`).
+2. No `index.html`, dentro de `.flash-card`, troque o bloco `<svg class="flash-icon">...</svg>` por:
    ```html
-   <img src="assets/rosa-1.jpg" alt="Descrição da tattoo">
+   <img src="assets/photos/flash-1.jpg" alt="Descrição do flash" class="flash-icon">
    ```
-3. Sempre preencha o `alt="..."` com uma descrição curta — ajuda acessibilidade
+3. Pra adicionar um trabalho novo em **trabalhos feitos**, copie um bloco
+   `<figure class="work">...</figure>` inteiro, cole antes do fechamento de
+   `.work-grid` e ajuste `src`, `alt` e o texto do `figcaption`.
+4. Sempre preencha o `alt="..."` com uma descrição curta — ajuda acessibilidade
    e SEO.
-4. Pra adicionar um card novo na galeria, copie um bloco `<figure class="card">
-   ...</figure>` inteiro e cole antes do fechamento de `.gallery`.
 
-Dica: fotos quadradas (1:1) encaixam melhor no grid sem cortar.
+Dica: fotos em pé (retrato, proporção ~3:4) encaixam melhor no grid de
+trabalhos sem cortar muita coisa importante.
 
 ## Como colocar no ar (GitHub + Vercel)
 
