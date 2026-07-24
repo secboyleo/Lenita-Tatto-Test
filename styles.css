@@ -306,30 +306,59 @@ code{
 }
 .flash-card{
   position: relative;
+  margin:0;
   background: var(--ink-soft);
   border: 1px solid rgba(250,247,241,.14);
   border-radius: 3px;
-  padding: 2.6rem 1.5rem 1.6rem;
-  text-align:center;
+  overflow:hidden;
+  text-align:left;
   transition: border-color .25s ease, transform .25s ease;
 }
 .flash-card:hover{ border-color: var(--red); transform: translateY(-4px); }
 
+/* photo fills the top of the card at a fixed 3:4 ratio, so every
+   flash photo you add should be cropped to this same ratio
+   (e.g. 900x1200px, 1200x1600px...) for a consistent grid */
+.flash-card img{
+  width:100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display:block;
+  background: var(--ink);
+}
+
+.flash-caption{
+  padding: 1rem 1.2rem 1.3rem;
+  display:flex;
+  flex-wrap: wrap;
+  align-items:baseline;
+  gap: .4rem .8rem;
+}
+.flash-caption .work-name{
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: var(--white);
+}
+.flash-caption .work-tag{
+  font-size: .66rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--cream-deep);
+  opacity: .65;
+}
+
+/* icon fallback kept for cards without a photo yet */
 .flash-icon{
   width: 92px; height: 92px;
   color: var(--white);
-  margin: 0 auto 1rem;
+  margin: 2.6rem auto 1rem;
+  display:block;
 }
 .flash-card-taken .flash-icon{ opacity: .35; }
-
-.flash-name{
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 1.05rem;
-  margin: 0;
-  color: var(--white);
-}
-.flash-card-taken .flash-name{ opacity: .5; }
+.flash-card-taken .flash-caption .work-name{ opacity: .5; }
+.flash-card-taken{ text-align:center; }
 
 .ribbon{
   position:absolute; top: .8rem; left: .8rem;

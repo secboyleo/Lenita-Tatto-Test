@@ -6,31 +6,42 @@ Site estático (HTML/CSS/JS puro, sem build) pra galeria de tatuagens da Lenita.
 
 ```
 lenita-tattoo/
-├── index.html      → todo o conteúdo e as seções do site
-├── styles.css      → visual (cores, tipografia, layout)
-├── script.js       → menu mobile e ano do rodapé
-└── assets/         → SVGs usados como imagens (troque pelas fotos reais)
+├── index.html          → todo o conteúdo e as seções do site
+├── styles.css          → visual (cores, tipografia, layout)
+├── script.js           → menu mobile e ano do rodapé
+└── assets/photos/      → todas as fotos usadas no site
 ```
 
-## Fotos
+## Fotos — tamanho e proporção certos
 
-As fotos reais já estão em `assets/photos/` (trabalhos + foto da Lenita
-tatuando). A seção **disponíveis** ainda usa ícones de exemplo (SVG) porque
-ainda não temos fotos de flash disponível — troque assim que tiver:
+Os dois grids do site (**trabalhos feitos** e **disponíveis**) usam a mesma
+proporção de imagem: **3:4 (retrato)**. O CSS já corta (`object-fit: cover`)
+qualquer foto que não vier exatamente nessa proporção, então o ideal é já
+mandar a imagem cortada certa pra não perder parte importante do desenho.
 
-1. Coloque a foto nova dentro de `assets/photos/` (ex: `assets/photos/flash-1.jpg`).
-2. No `index.html`, dentro de `.flash-card`, troque o bloco `<svg class="flash-icon">...</svg>` por:
-   ```html
-   <img src="assets/photos/flash-1.jpg" alt="Descrição do flash" class="flash-icon">
-   ```
-3. Pra adicionar um trabalho novo em **trabalhos feitos**, copie um bloco
-   `<figure class="work">...</figure>` inteiro, cole antes do fechamento de
-   `.work-grid` e ajuste `src`, `alt` e o texto do `figcaption`.
-4. Sempre preencha o `alt="..."` com uma descrição curta — ajuda acessibilidade
-   e SEO.
+**Tamanho recomendado:** 900×1200px (mínimo) até 1200×1600px (ideal).
+Formato JPG, qualidade ~80-85% — dá uma foto leve e nítida sem pesar o site.
 
-Dica: fotos em pé (retrato, proporção ~3:4) encaixam melhor no grid de
-trabalhos sem cortar muita coisa importante.
+- Fotos maiores que isso: eu redimensiono.
+- Fotos em outra proporção (quadrada, paisagem, celular vertical padrão
+  9:16 etc.): também dá pra usar, só que o CSS vai cortar as bordas
+  esquerda/direita ou topo/base pra encaixar no 3:4 — melhor deixar a parte
+  principal da tattoo centralizada na foto.
+
+### Adicionar um trabalho novo em "trabalhos feitos"
+
+Copie um bloco `<figure class="work">...</figure>` inteiro dentro de
+`.work-grid` no `index.html`, e ajuste `src`, `alt` e o texto do `figcaption`.
+
+### Trocar/adicionar um flash em "disponíveis"
+
+Copie um bloco `<figure class="flash-card">...</figure>` inteiro dentro de
+`.flash-grid`, ajuste `src`/`alt`/nome, e coloque a foto em
+`assets/photos/`. O selo "disponível" (ou "fechada") é o `<span class="ribbon">`
+no topo do bloco.
+
+Sempre preencha o `alt="..."` com uma descrição curta — ajuda acessibilidade
+e SEO.
 
 ## Como colocar no ar (GitHub + Vercel)
 
